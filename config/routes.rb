@@ -1,4 +1,6 @@
 Mondai::Application.routes.draw do
+  resources :m_questions
+
   resources :m_answers
 
   resources :b_questions
