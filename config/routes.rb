@@ -1,4 +1,5 @@
 Mondai::Application.routes.draw do
+  get "questions/index"
   resources :m_questions
 
   resources :m_answers
