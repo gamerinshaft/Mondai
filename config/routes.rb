@@ -1,12 +1,14 @@
 Mondai::Application.routes.draw do
+
+
+  resources :b_questions do
+    resources :b_answers
+  end
+
   get "questions/index"
-  resources :m_questions
-
-  resources :m_answers
-
-  resources :b_questions
-
-  resources :b_answers
+  resources :m_questions do
+    resources :m_answers
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
