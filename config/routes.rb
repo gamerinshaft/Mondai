@@ -1,4 +1,8 @@
 Mondai::Application.routes.draw do
+  resources :m_answers
+
+  resources :b_questions
+
   resources :b_answers
 
   # The priority is based upon order of creation: first created -> highest priority.
