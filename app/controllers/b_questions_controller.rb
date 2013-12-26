@@ -10,6 +10,7 @@ class BQuestionsController < ApplicationController
   # GET /b_questions/1.json
   def show
     @b_answer = BAnswer.new
+    @b_answers = BAnswer.all
   end
 
   # GET /b_questions/new
@@ -62,6 +63,7 @@ class BQuestionsController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_b_question
       @b_question = BQuestion.find(params[:id])
