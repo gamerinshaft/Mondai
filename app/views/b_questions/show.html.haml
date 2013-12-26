@@ -5,8 +5,12 @@
   = @b_question.content.gsub(/_blank_/,"(　　)")
 
 -	@b_question.b_answers.each do |b_answer|
-  = b_answer.answer
-  = link_to 'Destroy', b_question_b_answer_path(@b_question,b_answer), :method => :delete, :data => { :confirm => 'Are you sure?' }
+  %table
+    %td
+      %a{href: "#" , onclick: "alert('#{b_answer.answer}')"}
+        答え
+    %td
+      = link_to 'Destroy', b_question_b_answer_path(@b_question,b_answer), :method => :delete, :data => { :confirm => 'Are you sure?' }
   = form_tag  "/b_questions/#{@b_question.id}/b_answers/#{b_answer.id}/check", method: :post do
     = text_field_tag :kaitou
     = submit_tag "答え合わせ"
