@@ -4,11 +4,11 @@
   %b Content:
   = @b_question.content
 
--	@b_answers.each do |b_answer|
+-	@b_question.b_answers.each do |b_answer|
   = b_answer.answer
-  = form_for [@b_question,b_answer], :url => {:controller => 'b_answers',:action => 'check'} do |f|
-    = f.text_field :answer
-    = f.submit
+  = form_tag  "/b_questions/#{@b_question.id}/b_answers/#{b_answer.id}/check", method: :post do
+    = text_field_tag :kaitou
+    = submit_tag "答え合わせ"
 
 = render 'b_answers/form'
 = link_to 'Edit', edit_b_question_path(@b_question)

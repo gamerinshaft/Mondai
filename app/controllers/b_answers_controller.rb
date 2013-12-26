@@ -64,7 +64,16 @@ class BAnswersController < ApplicationController
   end
 
   def check
-    redirect_to b_questions_path
+    @b_answer = @b_question.b_answers.find(params[:id])
+    begin
+      if params.require(:kaitou) == @b_answer.answer
+        redirect_to b_question_path( @b_question), notice: "atari"
+      else
+        redirect_to b_question_path(@b_question), notice: "hazure"
+      end
+    rescue
+      redirect_to b_question_path(@b_question), notice: "文字を入力してください。"
+    end
   end
   private
     # Use callbacks to share common setup or constraints between actions.

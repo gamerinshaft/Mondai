@@ -4,7 +4,7 @@ Mondai::Application.routes.draw do
   resources :b_questions do
     resources :b_answers do
       member do
-        put 'check'
+        post 'check'
       end
     end
   end
