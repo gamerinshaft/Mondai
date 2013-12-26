@@ -4,6 +4,12 @@
   %b Content:
   = @b_question.content
 
+-	@b_answers.each do |b_answer|
+  = b_answer.answer
+  = form_for [@b_question,b_answer], :url => {:controller => 'b_answers',:action => 'check'} do |f|
+    = f.text_field :answer
+    = f.submit
+
 = render 'b_answers/form'
 = link_to 'Edit', edit_b_question_path(@b_question)
 \|
