@@ -2,7 +2,7 @@
 
 %p
   %b Content:
-  = @b_question.content
+  = @b_question.content.gsub(/_blank_/,"(　　)")
 
 -	@b_question.b_answers.each do |b_answer|
   = b_answer.answer
