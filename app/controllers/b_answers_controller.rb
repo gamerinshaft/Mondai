@@ -57,8 +57,9 @@ class BAnswersController < ApplicationController
   # DELETE /b_answers/1.json
   def destroy
     @b_answer.destroy
+    @b_question = BQuestion.find(params[:b_question_id])
     respond_to do |format|
-      format.html { redirect_to b_question_b_answers_url }
+      format.html { redirect_to b_question_path(@b_question) }
       format.json { head :no_content }
     end
   end
