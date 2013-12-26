@@ -29,7 +29,7 @@ class BAnswersController < ApplicationController
 
     respond_to do |format|
       if @b_answer.save
-        format.html { redirect_to b_question_b_answer_path(@b_question,@b_answer), notice: 'B answer was successfully created.' }
+        format.html { redirect_to b_question_path(@b_question), notice: 'B answer was successfully created.' }
         format.json { render action: 'show', status: :created, location: @b_answer }
       else
         format.html { render action: 'new' }
@@ -63,6 +63,9 @@ class BAnswersController < ApplicationController
     end
   end
 
+  def check
+    redirect_to b_questions_path
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_b_answer
