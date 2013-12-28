@@ -41,7 +41,7 @@ class BAnswersController < ApplicationController
   # PATCH/PUT /b_answers/1
   # PATCH/PUT /b_answers/1.json
   def update
-    @b_answer = @b_question.b_answers.build(b_answer_params)
+    @b_answer = BAnswer.find(params[:id])
     respond_to do |format|
       if @b_answer.update(b_answer_params)
         format.html { redirect_to b_question_b_answer_path(@b_question,@b_answer), notice: 'B answer was successfully updated.' }

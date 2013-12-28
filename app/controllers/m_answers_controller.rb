@@ -40,10 +40,10 @@ class MAnswersController < ApplicationController
   # PATCH/PUT /m_answers/1
   # PATCH/PUT /m_answers/1.json
   def update
-    @m_answer = @m_question.m_answers.build(m_answer_params)
+    @m_answer = MAnswer.find(params[:id])
     respond_to do |format|
       if @m_answer.update(m_answer_params)
-        format.html { redirect_to m_question_m_answer_path(@m_question,@m_answer), notice: 'M answer was successfully updated.' }
+        format.html { redirect_to m_question_path(@m_question), notice: 'M answer was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
