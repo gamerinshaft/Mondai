@@ -1,13 +1,15 @@
-= form_for @b_question do |f|
-  - if @b_question.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@b_question.errors.count, "error")} prohibited this b_question from being saved:"
-      %ul
-        - @b_question.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :content
-    = f.text_area :content
-  .actions
-    = f.submit 'Save'
+#b_question_form
+  = form_for @b_question do |f|
+    - if @b_question.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@b_question.errors.count, "error")} prohibited this b_question from being saved:"
+        %ul
+          - @b_question.errors.full_messages.each do |msg|
+            %li= msg
+    .field.col-md-12
+      %h4
+        穴埋問題を作成します。問題の内容を記入してください。
+      .mondai_box
+        = f.text_area :content, cols: 113, rows: 10
+    .actions.col-md-12
+      = f.submit '問題作成', class: "btn-primary"
