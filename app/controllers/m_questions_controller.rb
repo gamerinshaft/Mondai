@@ -31,7 +31,7 @@ class MQuestionsController < ApplicationController
 
     respond_to do |format|
       if @m_question.save
-        format.html { redirect_to questions_path, notice: 'M question was successfully created.' }
+        format.html { redirect_to m_question_path(@m_question), notice: 'M question was successfully created.' }
         format.json { render action: 'show', status: :created, location: @m_question }
       else
         format.html { render action: 'new' }
