@@ -1,5 +1,19 @@
-%h1 問題の種類を選択する
-%p 下記から選んでください。
+#questions.content.container
+  .col-md-2
+  .col-md-8
+    %h1 問題を作成する
 
-= link_to '選択問題を作成',m_questions_path
-= link_to '穴埋め問題を作成',b_questions_path
+    %ul#myTab.nav.nav-pills
+      %li.active
+        %a{"data-toggle" => "tab", href: "#sentaku"} 選択問題
+      %li
+        %a{"data-toggle" => "tab", href: "#anaume"} 穴埋め問題
+    .box
+      .tab-content
+        #sentaku.tab-pane.fade.in.active
+          =render 'm_questions/form'
+        #anaume.tab-pane.fade ...
+
+
+    = link_to '選択問題を作成',m_questions_path
+    = link_to '穴埋め問題を作成',b_questions_path
