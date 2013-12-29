@@ -46,5 +46,5 @@ end
 
 # User Add
 gem 'haml-rails'
-gem 'bootstrap-sass', '~> 2.3.1'
+gem 'bootstrap-sass', '~> 3.0.3.0'
 gem 'font-awesome-rails', '~> 3.2.1'
