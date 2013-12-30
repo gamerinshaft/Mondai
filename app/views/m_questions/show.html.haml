@@ -21,14 +21,50 @@
           .list_box
             %table.col-lg-12
               %tr
-                %th.col-lg-2 正誤判定
-                %th.col-lg-10 解答文
+                %th.seigo.col-lg-2 正誤判定
+                %th.col-lg-8 解答文
+                %th.edit.col-lg-2 編集
               - @m_question.m_answers.each do |m_answer|
                 %tr
                   %td.col-lg-2
                     = m_answer.check.to_s.gsub(/false/, "×").gsub(/true/, "○")
-                  %td.col-lg-10
+                  %td.col-lg-8
                     = m_answer.answer
+                  %td.col-lg-2
+                    .edit_box
+                      .edit.col-lg-12
+                        %button.btn.btn-primary.btn{"data-target" => "#myModal", "data-toggle" => "modal"}
+                          修正
+                        #myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+                          .modal-dialog
+                            .modal-content
+                              .modal-header
+                                %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+                                %h4#myModalLabel.modal-title 編集画面
+                              .modal-body
+                                #m_answers_form.col-lg-12
+                                  = form_for [@m_question, m_answer] do |f|
+                                    - if @m_answer.errors.any?
+                                      #error_explanation
+                                        %h2= "#{pluralize(@m_answer.errors.count, "error")} prohibited this m_answer from being saved:"
+                                        %ul
+                                          - @m_answer.errors.full_messages.each do |msg|
+                                            %li= msg
+                                    %h4 解答を作成します。正解のものにはチェックを入れてください。
+                                    .row
+                                      %table.col-lg-12
+                                        %tr
+                                          %td.col-lg-8
+                                            .group
+                                              .input-group
+                                                %span.input-group-addon
+                                                  = f.check_box :check
+                                                = f.text_field :answer, class: "form-control"
+                                          %td.col-lg-4
+                                            .actions
+                                              = f.submit 'Save', class: "btn-primary"
+                                              .delete
+                                              = link_to '削除', m_question_m_answer_path(@m_question, m_answer), method: :delete, confirm: "Are you sure?", class: "btn-primary"
         #mondai.tab-pane.fade
           .col-lg-1
           %p.col-lg-11

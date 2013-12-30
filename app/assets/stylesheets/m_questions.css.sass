@@ -18,19 +18,53 @@
               :margin-top 25px
               :border-top solid 1px #ccc
               tr
-                th.col-lg-2
+                th.seigo.col-lg-2
                   :color #333
                   :font-size 16px
                   :text-align center
                   :border-bottom solid 1px #ccc
                   :border-right solid 1px #ccc
-                th.col-lg-10
+                th.edit.col-lg-2
+                  :color #333
                   :font-size 16px
                   :text-align center
+                  :border-bottom solid 1px #ccc
+                th.col-lg-8
+                  :font-size 16px
+                  :text-align center
+                  :border-right solid 1px #ccc
                   :border-bottom solid 1px #ccc
                 td
                   :font-size 16px
                   :text-align center
+                  .edit_box
+                    .edit.col-lg-12
+                      button.btn.btn-primary.btn
+                      #myModal.modal.fade
+                        .modal-dialog
+                          .modal-content
+                            .modal-header
+                              :background-color #428bca
+                              button.close
+                              h4#myModalLabel.modal-title
+                                :padding-left 10px
+                                :color white
+                            .modal-body
+                              :height 170px
+                              #m_answers_form.col-lg-12
+                                h4
+                                .row
+                                  table.col-lg-12
+                                    tr
+                                      td.col-lg-8
+                                        .group
+                                          .input-group
+                                            span.input-group-addon
+                                            .form-control
+                                      td.col-lg-4
+                                        .actions
+                                          .btn-primary
+                                            :padding 8px
 
         #mondai.tab-pane.fade
           p
@@ -56,6 +90,47 @@
                       :color white
                   .modal-body
                     :height 290px
+
+#kaitou.content.container
+  .col-lg-2
+  .col-lg-8
+    h1
+      :margin-bottom 20px
+  .col-lg-2
+  .link_box.col-lg-12
+    :margin-bottom 18px
+    .col-lg-2
+    .link.col-lg-8
+      :margin-left -10px
+      a.btn-primary
+        :padding 15px 15px
+        :border-radius 8px
+        :text-decoration none
+    .col-lg-2
+  .mondai_box.col-lg-12
+    .col-lg-2
+
+    .content_box.col-lg-8
+      :margin 15px 0px
+      :padding 12px 18px
+      :min-height 240px
+      :border solid 1px #ccc
+      :border-radius 8px
+      :font-size 24px
+    .col-lg-2
+  .co-log-12
+    .col-lg-2
+    .kaitou_box.col-lg-8
+      .answer.col-lg-5
+        :border solid 1px #ccc
+        :font-size 18px
+        :padding 10px 0px
+        :margin 10px 30px
+        :text-align center
+        :border-radius 8px
+
+
+
 
 
 #m_question_form

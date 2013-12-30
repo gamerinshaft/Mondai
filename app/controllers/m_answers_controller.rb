@@ -1,6 +1,6 @@
 class MAnswersController < ApplicationController
   before_action :set_m_answer, only: [:show, :edit, :update, :destroy]
-  before_action :set_m_question, except: [:destroy]
+  before_action :set_m_question
   # GET /m_answers
   # GET /m_answers.json
   def index
@@ -58,7 +58,7 @@ class MAnswersController < ApplicationController
 
     @m_answer.destroy
     respond_to do |format|
-      format.html { redirect_to m_question_m_answers_url }
+      format.html { redirect_to m_question_path(@m_question) }
       format.json { head :no_content }
     end
   end

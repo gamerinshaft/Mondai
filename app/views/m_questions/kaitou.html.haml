@@ -1,0 +1,30 @@
+#kaitou.content.container
+  .col-lg-2
+  .col-lg-8
+    %h1 問題
+  .col-lg-2
+
+  .link_box.col-lg-12
+    .col-lg-2
+    .link.col-lg-8
+      = link_to '選択問題一覧',m_questions_path, class: "btn-primary"
+      = link_to '穴埋問題一覧',b_questions_path, class: "btn-primary"
+    .col-lg-2
+  .mondai_box.col-lg-12
+    .col-lg-2
+
+    .content_box.col-lg-8
+      = @m_question.content
+    .col-lg-2
+  .co-log-12
+    .col-lg-2
+    .kaitou_box.col-lg-8
+      - @m_question.m_answers.each do |m_answer|
+        .answer.col-lg-5
+          -if m_answer.check
+            %a{href: "#", onclick: "alert('あたり')"}
+              = m_answer.answer
+          -else
+            %a{href: "#", onclick: "alert('はずれ')"}
+              = m_answer.answer
+
