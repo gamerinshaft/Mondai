@@ -11,7 +11,7 @@
     .box
       .tab-content
         #kaitou.tab-pane.fade.in.active
-          -if @m_question.m_answers.count > 6
+          -if @m_question.m_answers.count > 5
             %h4.col-lg-12
               解答作成できるのは6個までです。
               %br
@@ -33,9 +33,9 @@
                   %td.col-lg-2
                     .edit_box
                       .edit.col-lg-12
-                        %button.btn.btn-primary.btn{"data-target" => "#myModal", "data-toggle" => "modal"}
+                        %button.btn.btn-primary.btn{ "data-toggle" => "modal", :href => "##{dom_id(m_answer)}_delete_modal"}
                           修正
-                        #myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+                        .modal.fade{:id => "#{dom_id(m_answer)}_delete_modal"}
                           .modal-dialog
                             .modal-content
                               .modal-header
