@@ -7,10 +7,12 @@ Mondai::Application.routes.draw do
         post 'check'
       end
     end
-  end
-
+  end  
   get "questions/index"
   resources :m_questions do
+    member do
+      get 'kaitou'
+    end  
     resources :m_answers
   end
 
