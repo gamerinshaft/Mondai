@@ -7,3 +7,22 @@
 = link_to 'Edit', edit_b_question_b_answer_path(@b_question,@b_answer)
 \|
 = link_to 'Back', b_question_b_answers_path
+         %p
+            %b Content:
+            = @m_question.content
+          %table
+            - @m_question.m_answers.each do |m_answer|
+              %tr
+                - if m_answer.check
+                  %td
+                    %a{href: "#", onclick: "alert('あたり')"}
+                      = m_answer.answer
+                - else
+                  %td
+                    %a{href: "#", onclick: "alert('はずれ')"}= m_answer.answer
+                %td
+                  = link_to 'Edit',edit_m_question_m_answer_path(@m_question, m_answer)
+          = link_to 'Edit', edit_m_question_path(@m_question)
+          \|
+
+          = link_to 'Back', m_questions_path

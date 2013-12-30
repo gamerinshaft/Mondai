@@ -1,22 +1,54 @@
-%p#notice= notice
+#m_question_show.content.container
+  .col-md-2
+  .col-md-8
+    %h1 解答を作成する
 
-%p
-  %b Content:
-  = @m_question.content
-%table
-  - @m_question.m_answers.each do |m_answer|
-    %tr
-      - if m_answer.check
-        %td
-          %a{href: "#", onclick: "alert('あたり')"}
-            = m_answer.answer
-      - else
-        %td
-          %a{href: "#", onclick: "alert('はずれ')"}= m_answer.answer
-      %td
-        = link_to 'Edit',edit_m_question_m_answer_path(@m_question, m_answer)
-= render 'm_answers/form'
-= link_to 'Edit', edit_m_question_path(@m_question)
-\|
+    %ul#myTab.nav.nav-pills
+      %li.active
+        %a{"data-toggle" => "tab", href: "#kaitou"} 解答を作成
+      %li
+        %a{"data-toggle" => "tab", href: "#mondai"} 問題を確認
+    .box
+      .tab-content
+        #kaitou.tab-pane.fade.in.active
+          -if @m_question.m_answers.count > 6
+            %h4.col-lg-12
+              解答作成できるのは6個までです。
+              %br
+              解答を削除、または編集してください。
+          -else
+            =render 'm_answers/form'
+          .list_box
+            %table.col-lg-12
+              %tr
+                %th.col-lg-2 正誤判定
+                %th.col-lg-10 解答文
+              - @m_question.m_answers.each do |m_answer|
+                %tr
+                  %td.col-lg-2
+                    = m_answer.check.to_s.gsub(/false/, "×").gsub(/true/, "○")
+                  %td.col-lg-10
+                    = m_answer.answer
+        #mondai.tab-pane.fade
+          .col-lg-1
+          %p.col-lg-11
+            問.
+          .col-lg-1
+          .content_box.col-lg-10
+            = @m_question.content
+          .col-lg-1
+          .edit_box
+            .edit.col-lg-12
+              %button.btn.btn-primary.btn{"data-target" => "#myModal", "data-toggle" => "modal"}
+                問題を編集する
+              #myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+                .modal-dialog
+                  .modal-content
+                    .modal-header
+                      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+                      %h4#myModalLabel.modal-title 編集画面
+                    .modal-body
+                      = render "m_questions/form"
 
-= link_to 'Back', m_questions_path
+
+

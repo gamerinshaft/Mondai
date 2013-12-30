@@ -11,10 +11,8 @@
     .box
       .tab-content
         #sentaku.tab-pane.fade.in.active
-          =render 'm_questions/form'
+          .col-lg-1
+          .col-lg-10
+            =render 'm_questions/form'
         #anaume.tab-pane.fade
           =render 'b_questions/form'
-
-
-    = link_to '選択問題を作成',m_questions_path
-    = link_to '穴埋め問題を作成',b_questions_path
