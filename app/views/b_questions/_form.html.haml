@@ -7,9 +7,11 @@
           - @b_question.errors.full_messages.each do |msg|
             %li= msg
     .field.col-md-12
-      %h4
-        穴埋問題を作成します。問題の内容を記入してください。
-      .mondai_box
-        = f.text_area :content, cols: 113, rows: 10
-    .actions.col-md-12
-      = f.submit '問題作成', class: "btn-primary"
+      .col-md-1
+      .col-md-10
+        %h4 穴埋問題を作成します。問題の内容を記入してください。
+        .mondai_box
+          = f.text_area :content, cols: 85, rows: 8
+      .actions.col-md-12
+        .col-md-1
+        = f.submit '問題作成', class: "btn-primary"
