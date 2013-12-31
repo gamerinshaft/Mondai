@@ -29,7 +29,7 @@ class BQuestionsController < ApplicationController
 
     respond_to do |format|
       if @b_question.save
-        format.html { redirect_to b_question_path(@b_question), notice: 'B question was successfully created.' }
+        format.html { redirect_to b_question_path(@b_question) }
         format.json { render action: 'show', status: :created, location: @b_question }
       else
         format.html { render action: 'new' }
@@ -43,7 +43,7 @@ class BQuestionsController < ApplicationController
   def update
     respond_to do |format|
       if @b_question.update(b_question_params)
-        format.html { redirect_to @b_question, notice: 'B question was successfully updated.' }
+        format.html { redirect_to @b_question }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -60,6 +60,10 @@ class BQuestionsController < ApplicationController
       format.html { redirect_to b_questions_url }
       format.json { head :no_content }
     end
+  end
+
+  def kaitou
+    @b_question = BQuestion.find(params[:id])
   end
 
   private

@@ -1,0 +1,46 @@
+#b_kaitou.content.container
+  .col-lg-2
+  .col-lg-8
+    %table
+      %tr
+        %th
+          %h1 問題
+        %th
+          %h1#notice= notice
+  .col-lg-2
+
+  .link_box.col-lg-12
+    .col-lg-2
+    .link.col-lg-8
+      = link_to '選択問題一覧',m_questions_path, class: "btn-primary"
+      = link_to '穴埋問題一覧',b_questions_path, class: "btn-primary"
+
+    .col-lg-2
+  .mondai_box.col-lg-12
+    .col-lg-2
+
+    .content_box.col-lg-8
+      = @b_question.content.gsub(/_blank_/, "(　　)")
+    .col-lg-2
+  .co-log-12
+    .col-lg-2
+    .kaitou_box.col-lg-8
+      - @b_question.b_answers.each do |b_answer|
+        = form_tag  "/b_questions/#{@b_question.id}/b_answers/#{b_answer.id}/check", method: :post do
+          .input-group
+            %span.input-group-addon
+              回答欄
+            %input#kaitou{name: "kaitou", size: "80", type: "text", value: "", class: "form-control"}
+            %span.input-group-btn
+              %button.btn.btn-default{type: "submit"} 答え合わせ
+          %br
+  .back_link.col-lg-12
+    .col-lg-2
+    .col-lg-8
+      = link_to '編集に戻る', b_question_path(@b_question)
+
+
+
+
+
+

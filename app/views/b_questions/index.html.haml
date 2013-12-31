@@ -9,7 +9,7 @@
 
   - @b_questions.each do |b_question|
     %tr
-      %td= b_question.content
+      %td= b_question.content.gsub(/_blank_/, "(　　)")
       %td= link_to 'Show', b_question
       %td= link_to 'Edit', edit_b_question_path(b_question)
       %td= link_to 'Destroy', b_question, :method => :delete, :data => { :confirm => 'Are you sure?' }

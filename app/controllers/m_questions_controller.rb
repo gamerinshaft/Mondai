@@ -30,7 +30,7 @@ class MQuestionsController < ApplicationController
 
     respond_to do |format|
       if @m_question.save
-        format.html { redirect_to m_question_path(@m_question), notice: 'M question was successfully created.' }
+        format.html { redirect_to m_question_path(@m_question) }
         format.json { render action: 'show', status: :created, location: @m_question }
       else
         format.html { render action: 'new' }
@@ -44,7 +44,7 @@ class MQuestionsController < ApplicationController
   def update
     respond_to do |format|
       if @m_question.update(m_question_params)
-        format.html { redirect_to @m_question, notice: 'M question was successfully updated.' }
+        format.html { redirect_to @m_question }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

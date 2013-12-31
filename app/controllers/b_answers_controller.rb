@@ -68,12 +68,12 @@ class BAnswersController < ApplicationController
     @b_answer = @b_question.b_answers.find(params[:id])
     begin
       if params.require(:kaitou) == @b_answer.answer
-        redirect_to b_question_path( @b_question), notice: "atari"
+        redirect_to kaitou_b_question_path( @b_question), notice: "：正解"
       else
-        redirect_to b_question_path(@b_question), notice: "hazure"
+        redirect_to kaitou_b_question_path(@b_question), notice: "：不正解"
       end
     rescue
-      redirect_to b_question_path(@b_question), notice: "文字を入力してください。"
+      redirect_to kaitou_b_question_path(@b_question), notice: "：文字を入力してください。"
     end
   end
   private
