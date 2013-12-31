@@ -2,6 +2,9 @@ Mondai::Application.routes.draw do
 
 
   resources :b_questions do
+    member do
+      get 'kaitou'
+    end  
     resources :b_answers do
       member do
         post 'check'
