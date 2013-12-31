@@ -1,6 +1,93 @@
 // Place all the styles related to the b_questions controller here.
 // They will automatically be included in application.css.
 // You can use Sass here: http://sass-lang.com/
+
+#b_question_show.content.container
+  .col-md-2
+  .col-md-8
+    h1
+    .box
+      :margin 15px 0px
+      :padding 12px 0px
+      :min-height 355px
+      :border solid 1px #ccc
+      :border-radius 8px
+      .tab-content
+        #kaitou
+          .list_box
+            table
+              :margin-top 25px
+              :border-top solid 1px #ccc
+              tr
+                th.edit.col-lg-2
+                  :color #333
+                  :font-size 16px
+                  :text-align center
+                  :border-bottom solid 1px #ccc
+                th.col-lg-10
+                  :font-size 16px
+                  :text-align center
+                  :border-right solid 1px #ccc
+                  :border-bottom solid 1px #ccc
+                td
+                  :font-size 16px
+                  :text-align center
+                  .edit_box
+                    .edit.col-lg-12
+                      button.btn.btn-primary.btn
+                      .modal.modal.fade
+                        .modal-dialog
+                          .modal-content
+                            .modal-header
+                              :background-color #428bca
+                              button.close
+                              h4#myModalLabel.modal-title
+                                :padding-left 10px
+                                :color white
+                            .modal-body
+                              :height 170px
+                              #m_answers_form.col-lg-12
+                                h4
+                                .row
+                                  table.col-lg-12
+                                    tr
+                                      td.col-lg-8
+                                        .form
+                                          .form-control
+
+                                      td.col-lg-4
+                                        .actions
+                                          .btn-primary
+                                            :padding 8px
+
+        #mondai.tab-pane.fade
+          p
+            :margin-top 16px
+            :font-size 24px
+          .content_box
+            :padding-top 12px
+            :border solid 1px #ccc
+            :font-size 18px
+            :height 180px
+          .edit
+
+            %button.btn.btn-primary.btn
+            :text-align center
+            :margin-top 32px
+            #myModal.modal.fade
+              .modal-dialog
+                .modal-content
+                  .modal-header
+                    :background-color #428bca
+                    button.close
+                    h4#myModalLabel.modal-title
+                      :padding-left 10px
+                      :color white
+                  .modal-body
+                    :height 290px
+
+
+
 #b_question_form
   .field
     h4

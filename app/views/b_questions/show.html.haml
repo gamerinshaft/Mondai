@@ -1,21 +1,85 @@
-%p#notice= notice
+#b_question_show.content.container
+  .col-md-2
+  .col-md-8
+    %h1 解答を作成する
+    %ul#myTab.nav.nav-pills
+      %li.active
+        %a{"data-toggle" => "tab", href: "#kaitou"} 解答を作成
+      %li
+        %a{"data-toggle" => "tab", href: "#mondai"} 問題を確認
+    .box
+      .tab-content
+        #kaitou.tab-pane.fade.in.active
+          -if @b_question.b_answers.count > 5
+            %h4.col-lg-12
+              解答作成できるのは6個までです。
+              %br
+              解答を削除、または編集してください。
+          -else
+            =render 'b_answers/form'
+          .list_box
+            %table.col-lg-12
+              %tr
+                %th.col-lg-10 解答文
+                %th.edit.col-lg-2 編集
+              - @b_question.b_answers.each do |b_answer|
+                %tr
+                  %td.col-lg-10
+                    = b_answer.answer
+                  %td.col-lg-2
+                    .edit_box
+                      .edit.col-lg-12
+                        %button.btn.btn-primary.btn{ "data-toggle" => "modal", :href => "##{dom_id(b_answer)}_delete_modal"}
+                          修正
+                        .modal.fade{:id => "#{dom_id(b_answer)}_delete_modal"}
+                          .modal-dialog
+                            .modal-content
+                              .modal-header
+                                %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+                                %h4#myModalLabel.modal-title 編集画面
+                              .modal-body
+                                #m_answers_form.col-lg-12
+                                  = form_for [@b_question, b_answer] do |f|
+                                    - if @b_answer.errors.any?
+                                      #error_explanation
+                                        %h2= "#{pluralize(@b_answer.errors.count, "error")} prohibited this m_answer from being saved:"
+                                        %ul
+                                          - @b_answer.errors.full_messages.each do |msg|
+                                            %li= msg
+                                    %h4 解答を作成します。正解のものにはチェックを入れてください。
+                                    .row
+                                      %table.col-lg-12
+                                        %tr
+                                          %td.col-lg-8
+                                            .form
+                                              = f.text_field :answer, class: "form-control"
+                                          %td.col-lg-4
+                                            .actions
+                                              = f.submit 'Save', class: "btn-primary"
+                                              .delete
+                                              = link_to '削除', b_question_b_answer_path(@b_question, b_answer), method: :delete, confirm: "Are you sure?", class: "btn-primary"
+        #mondai.tab-pane.fade
+          .col-lg-1
+          %p.col-lg-11
+            問.
+          .col-lg-1
+          .content_box.col-lg-10
+            = @b_question.content.gsub(/_blank_/, "(　　)")
+          .col-lg-1
+          .edit_box
+            .edit.col-lg-12
+              %button.btn.btn-primary.btn{"data-target" => "#myModal", "data-toggle" => "modal"}
+                問題を編集する
+              #myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+                .modal-dialog
+                  .modal-content
+                    .modal-header
+                      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+                      %h4#myModalLabel.modal-title 編集画面
+                    .modal-body
+                      = render "b_questions/form"
+    .link
+      = link_to "回答画面を確認する", b_question_path(@b_question)
+      = link_to "問題選択画面に戻る", questions_index_path
 
-%p
-  %b Content:
-  = @b_question.content.gsub(/_blank_/,"(　　)")
 
--	@b_question.b_answers.each do |b_answer|
-  %table
-    %td
-      %a{href: "#" , onclick: "alert('#{b_answer.answer}')"}
-        答え
-    %td
-      = link_to 'Destroy', b_question_b_answer_path(@b_question,b_answer), :method => :delete, :data => { :confirm => 'Are you sure?' }
-  = form_tag  "/b_questions/#{@b_question.id}/b_answers/#{b_answer.id}/check", method: :post do
-    = text_field_tag :kaitou
-    = submit_tag "答え合わせ"
-
-= render 'b_answers/form'
-= link_to 'Edit', edit_b_question_path(@b_question)
-\|
-= link_to 'Back', b_questions_path
