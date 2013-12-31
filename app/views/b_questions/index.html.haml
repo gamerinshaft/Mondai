@@ -1,20 +1,17 @@
-%h1 Listing b_questions
+%h1 問題一覧
 
 %table
   %tr
     %th Content
     %th
-    %th
-    %th
+
 
   - @b_questions.each do |b_question|
     %tr
       %td= b_question.content.gsub(/_blank_/, "(　　)")
-      %td= link_to 'Show', b_question
-      %td= link_to 'Edit', edit_b_question_path(b_question)
-      %td= link_to 'Destroy', b_question, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= link_to '表示する', b_question
+
 
 %br
 
-= link_to 'New B question', new_b_question_path
-= link_to '種類選択に戻る', questions_index_path
+= link_to '問題を作成する', questions_index_path

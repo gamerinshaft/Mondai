@@ -4,18 +4,13 @@
   %tr
     %th 問題内容
     %th
-    %th
-    %th
 
   - @m_questions.each do |m_question|
     %tr
       %td= m_question.content
-      %td= link_to 'Show', m_question
-      %td= link_to 'Edit', edit_m_question_path(m_question)
-      %td= link_to 'Destroy', m_question, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= link_to '表示する', m_question
 
 %br
 
-= link_to '新しい選択問題を作成する', new_m_question_path
-\|
-= link_to '種類選択に戻る', questions_index_path
+
+= link_to '問題を作成する', questions_index_path
