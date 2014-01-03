@@ -28,7 +28,7 @@ class MAnswersController < ApplicationController
     @m_answer = @m_question.m_answers.build(m_answer_params)
     respond_to do |format|
       if @m_answer.save
-        format.html { redirect_to m_question_path(@m_question), notice: 'M answer was successfully created.' }
+        format.html { redirect_to m_question_path(@m_question) }
         format.json { render action: 'show', status: :created, location: @m_answer }
       else
         format.html { render action: 'new' }

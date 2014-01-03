@@ -1,23 +1,32 @@
 #questions.content.container
-  .col-md-2
-  .col-md-8
-    %h1 問題を作成する
+  .col-md-12
+    %h1.questions 問題一覧
+  #m_questions_index.content.container
+    .col-md-12
+      %h1 選択問題一覧
 
-    %ul#myTab.nav.nav-pills
-      %li.active
-        %a{"data-toggle" => "tab", href: "#sentaku"} 選択問題
-      %li
-        %a{"data-toggle" => "tab", href: "#anaume"} 穴埋問題
-    .box
-      .tab-content
-        #sentaku.tab-pane.fade.in.active
-          .col-lg-1
-          .col-lg-10
-            =render 'm_questions/form'
-        #anaume.tab-pane.fade
-          =render 'b_questions/form'
-  .link.col-md-12
-    .col-md-2
-    .col-md-8
-      = link_to "選択問題一覧", m_questions_path
-      = link_to "穴埋問題一覧", b_questions_path
+      %table
+        - @m_questions.each do |m_question|
+          %tr.col-md-12
+            %td.col-md-10= m_question.content.gsub(/_blank_/, "(　　)")
+            %td.col-md-1
+              = link_to '表示する', m_question, class: "btn-primary"
+            %td.col-md-1
+              = link_to '削除する', m_question_path(m_question), method: :delete, confirm: "本当に削除してもよろしいですか?", class: "btn-primary"
+      %br
+  #b_questions_index.content.container
+    .col-md-12
+      %h1 穴埋問題一覧
+
+      %table
+        - @b_questions.each do |b_question|
+          %tr.col-md-12
+            %td.col-md-10= b_question.content.gsub(/_blank_/, "(　　)")
+            %td.col-md-1
+              = link_to '表示する', b_question, class: "btn-primary"
+            %td.col-md-1
+              = link_to '削除する', b_question_path(b_question), method: :delete, confirm: "本当に削除してもよろしいですか?", class: "btn-primary"
+
+      %br
+
+      = link_to '問題を作成する', new_question_path
