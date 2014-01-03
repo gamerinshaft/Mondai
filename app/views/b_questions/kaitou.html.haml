@@ -38,8 +38,27 @@
     .col-lg-8
       = link_to '編集に戻る', b_question_path(@b_question)
 
+:javascript
+  $(function(){
+    var answer;
+    answer = $(".kaitou_box > form");
 
+    answer.submit(function(e){
+      var target = $(e.target);
+      e.preventDefault();
+      e.stopPropagation();
+      $.ajax({
+        type:    "POST",
+        url:     target.attr("action"),
+        data:    {kaitou: target.find("#kaitou").val()},
+        dataType: "json",
+        success: function(data) {
+          alert(data.message);
+        },
 
-
-
-
+        error:   function(jqXHR, textStatus, errorThrown) {
+          console.log(textStatus)
+        }
+      });
+    });
+  });

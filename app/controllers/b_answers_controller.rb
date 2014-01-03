@@ -66,14 +66,20 @@ class BAnswersController < ApplicationController
 
   def check
     @b_answer = @b_question.b_answers.find(params[:id])
-    begin
-      if params.require(:kaitou) == @b_answer.answer
-        redirect_to kaitou_b_question_path( @b_question), notice: "：正解"
-      else
-        redirect_to kaitou_b_question_path(@b_question), notice: "：不正解"
+
+    respond_to do |format|
+      begin
+        if params.require(:kaitou) == @b_answer.answer
+          format.json { render json: {message: "正解"} }
+          format.html { redirect_to kaitou_b_question_path( @b_question), notice: "：正解" }
+        else
+          format.json { render json: {message: "不正解"} }
+          format.html {redirect_to kaitou_b_question_path(@b_question), notice: "：不正解"}
+        end
+      rescue
+          format.json { render json: {message: "文字を入力してください"} }
+          format.html {redirect_to kaitou_b_question_path(@b_question), notice: "：文字を入力してください。"}
       end
-    rescue
-      redirect_to kaitou_b_question_path(@b_question), notice: "：文字を入力してください。"
     end
   end
   private
