@@ -10,9 +10,7 @@
           %tr.col-md-12
             %td.col-md-10= m_question.content.gsub(/_blank_/, "(　　)")
             %td.col-md-1
-              = link_to '表示する', m_question, class: "btn-primary"
-            %td.col-md-1
-              = link_to '削除する', m_question_path(m_question), method: :delete, confirm: "本当に削除してもよろしいですか?", class: "btn-primary"
+              = link_to '表示する', kaitou_m_question_path(m_question), class: "btn-primary"
       %br
   #b_questions_index.content.container
     .col-md-12
@@ -23,10 +21,7 @@
           %tr.col-md-12
             %td.col-md-10= b_question.content.gsub(/_blank_/, "(　　)")
             %td.col-md-1
-              = link_to '表示する', b_question, class: "btn-primary"
-            %td.col-md-1
-              = link_to '削除する', b_question_path(b_question), method: :delete, confirm: "本当に削除してもよろしいですか?", class: "btn-primary"
-
+              = link_to '表示する', kaitou_b_question_path(b_question), class: "btn-primary"
       %br
 
       = link_to '問題を作成する', new_question_path
