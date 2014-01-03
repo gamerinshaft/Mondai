@@ -13,6 +13,7 @@
     .col-lg-2
     .link.col-lg-8
       = link_to '問題一覧',questions_path, class: "btn-primary"
+      = link_to '問題を削除する',b_question_path(@b_question),method: :delete,confirm: "本当に削除してよろしいですか？", class: "btn-primary"
     .col-lg-2
   .mondai_box.col-lg-12
     .col-lg-2

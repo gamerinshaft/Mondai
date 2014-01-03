@@ -57,7 +57,7 @@ class BQuestionsController < ApplicationController
   def destroy
     @b_question.destroy
     respond_to do |format|
-      format.html { redirect_to b_questions_url }
+      format.html { redirect_to questions_path }
       format.json { head :no_content }
     end
   end

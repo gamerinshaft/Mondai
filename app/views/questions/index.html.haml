@@ -8,7 +8,7 @@
       %table
         - @m_questions.each do |m_question|
           %tr.col-md-12
-            %td.col-md-10= m_question.content.gsub(/_blank_/, "(　　)")
+            %td.col-md-11= m_question.content.gsub(/_blank_/, "(　　)")
             %td.col-md-1
               = link_to '表示する', kaitou_m_question_path(m_question), class: "btn-primary"
       %br
@@ -19,7 +19,7 @@
       %table
         - @b_questions.each do |b_question|
           %tr.col-md-12
-            %td.col-md-10= b_question.content.gsub(/_blank_/, "(　　)")
+            %td.col-md-11= b_question.content.gsub(/_blank_/, "(　　)")
             %td.col-md-1
               = link_to '表示する', kaitou_b_question_path(b_question), class: "btn-primary"
       %br
