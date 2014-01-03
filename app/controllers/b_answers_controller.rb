@@ -29,7 +29,7 @@ class BAnswersController < ApplicationController
 
     respond_to do |format|
       if @b_answer.save
-        format.html { redirect_to b_question_path(@b_question), notice: 'B answer was successfully created.' }
+        format.html { redirect_to b_question_path(@b_question) }
         format.json { render action: 'show', status: :created, location: @b_answer }
       else
         format.html { render action: 'new' }

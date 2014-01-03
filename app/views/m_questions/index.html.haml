@@ -1,16 +1,16 @@
-%h1 選択問題一覧
+#m_questions_index.content.container
+  .col-md-12
+    %h1 問題一覧
 
-%table
-  %tr
-    %th 問題内容
-    %th
+    %table
+      - @m_questions.each do |m_question|
+        %tr.col-md-12
+          %td.col-md-10= m_question.content.gsub(/_blank_/, "(　　)")
+          %td.col-md-1
+            = link_to '表示する', m_question, class: "btn-primary"
+          %td.col-md-1
+            = link_to '削除する', m_question_path(m_question), method: :delete, confirm: "本当に削除してもよろしいですか?", class: "btn-primary"
 
-  - @m_questions.each do |m_question|
-    %tr
-      %td= m_question.content
-      %td= link_to '表示する', m_question
+    %br
 
-%br
-
-
-= link_to '問題を作成する', questions_index_path
+    = link_to '問題を作成する', questions_index_path

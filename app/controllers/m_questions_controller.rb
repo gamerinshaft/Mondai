@@ -30,7 +30,7 @@ class MQuestionsController < ApplicationController
 
     respond_to do |format|
       if @m_question.save
-        format.html { redirect_to m_question_path(@m_question) }
+        format.html { redirect_to m_question_path(@m_question), notice: "【問題を作成しました。】" }
         format.json { render action: 'show', status: :created, location: @m_question }
       else
         format.html { render action: 'new' }
