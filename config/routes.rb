@@ -11,7 +11,8 @@ Mondai::Application.routes.draw do
       end
     end
   end  
-  get "questions/index"
+  resources :questions, only: [:index, :new]
+  
   resources :m_questions do
     member do
       get 'kaitou'
@@ -21,7 +22,7 @@ Mondai::Application.routes.draw do
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all yourr  # You can have the root of your site routed with "root"
-  root 'questions#index'
+  root 'questions#new'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

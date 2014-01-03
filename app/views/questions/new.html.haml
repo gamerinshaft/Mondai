@@ -1,0 +1,23 @@
+#question_new.content.container
+  .col-md-2
+  .col-md-8
+    %h1 問題を作成する
+
+    %ul#myTab.nav.nav-pills
+      %li.active
+        %a{"data-toggle" => "tab", href: "#sentaku"} 選択問題
+      %li
+        %a{"data-toggle" => "tab", href: "#anaume"} 穴埋問題
+    .box
+      .tab-content
+        #sentaku.tab-pane.fade.in.active
+          .col-lg-1
+          .col-lg-10
+            =render 'm_questions/form'
+        #anaume.tab-pane.fade
+          =render 'b_questions/form'
+  .link.col-md-12
+    .col-md-2
+    .col-md-8
+      = link_to "選択問題一覧", m_questions_path
+      = link_to "穴埋問題一覧", b_questions_path
